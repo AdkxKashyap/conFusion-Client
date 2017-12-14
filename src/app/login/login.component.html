@@ -11,7 +11,7 @@
   <md-dialog-content>
     <p>
       <md-input-container dividerColor="{{username.invalid && !username.pristine ? 'warn' : 'primary'}}">
-        <input mdInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required>
+        <input mdInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required> <!--ngModel is used to bind the data to user object  -->
         <md-hint>
           <span [hidden]="username.pristine">
           <span [hidden]="!username.errors?.required">username is required</span>

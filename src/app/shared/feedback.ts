@@ -1,4 +1,4 @@
-export class Feedback {
+export class Feedback {    //Data Model
     firstname: string;
     lastname: string;
     telnum: number;
