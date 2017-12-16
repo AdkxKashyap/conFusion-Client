@@ -17,7 +17,7 @@ leader:Leader;
   constructor(private dishservice:DishService,private promo:PromotionService,private leaderservice:LeaderService) {}
 
   ngOnInit() {
-    this.dish=this.dishservice.getFeaturedDish();
+    this.dishservice.getFeaturedDish().then((lish:Dish)=>(this.dish=lish));
     this.promotion=this.promo.getFeaturedPromotion();
     this.leader=this.leaderservice.getFeaturedLeader();
     

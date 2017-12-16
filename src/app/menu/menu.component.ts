@@ -10,7 +10,7 @@ import { DishService } from '../services/dish.service'; //provides method to ret
 
 export class MenuComponent implements OnInit {
   dishes:Dish[];
-  
+  color="warn"
 
 
   constructor(private dishService:DishService) { } //Constructor is called FIRST
@@ -18,7 +18,7 @@ onSelect(dish: Dish){
     
   }
   ngOnInit() {
-    this.dishes=this.dishService.getDishes();
+  this.dishService.getDishes().then(dishes=>this.dishes=dishes);
   }
 
 }

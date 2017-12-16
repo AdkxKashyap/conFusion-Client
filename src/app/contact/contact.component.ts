@@ -13,7 +13,7 @@ export class ContactComponent implements OnInit {
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
-
+ color='primary'; //Colour for slide toggle
   constructor(private fb: FormBuilder) {
     this.createForm();
   }
@@ -26,7 +26,7 @@ export class ContactComponent implements OnInit {
       firstname: ['',Validators.required],
       lastname:  ['',Validators.required],
       telnum:['',Validators.required],
-      email:  ['',Validators.required],
+      email:  ['',Validators.email],
       agree: false,
       contacttype: 'None',
       message: ''

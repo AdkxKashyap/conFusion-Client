@@ -18,7 +18,7 @@ import { ContactComponent } from './contact/contact.component';
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { LoginComponent } from './login/login.component'
-import {MdToolbarModule, MdButtonModule, MdCheckboxModule,MatListModule,MatGridListModule,MatCardModule,MatFormFieldModule,MatInputModule,MatSelectModule,MatSlideToggleModule} from '@angular/material';
+import {MatProgressSpinnerModule,MdToolbarModule, MdButtonModule, MdCheckboxModule,MatListModule,MatGridListModule,MatCardModule,MatFormFieldModule,MatInputModule,MatSelectModule,MatSlideToggleModule} from '@angular/material';
 //Service COmponents
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
@@ -51,6 +51,7 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
     MdButtonModule,
     MdCheckboxModule,
     MatListModule,
+    MatProgressSpinnerModule,
     MatGridListModule,
     MatCardModule,
     FlexLayoutModule,
