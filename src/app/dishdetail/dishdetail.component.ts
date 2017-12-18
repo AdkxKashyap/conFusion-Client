@@ -18,10 +18,13 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
   
-  constructor(private dishservice: DishService,
+  constructor(private dishservice: DishService,  //Constructor is first called so all the dependencies are initialied here so that the cud be used later in the code.
     private route: ActivatedRoute,
-    private location: Location) { }
-    private router:Router
+    private location: Location,
+    private router:Router) {
+      
+     }
+    
   ngOnInit() {
 
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
@@ -37,7 +40,7 @@ export class DishdetailComponent implements OnInit {
   }
     
      goBack(): void {
-    this.router.navigateByUrl('/menu');
+    this.router.navigateByUrl('./menu.component.html');
   }
     
     //on selecting a dish from menu the snapshot of  url is taken(present in toutes.ts) from which then id is taken. 
