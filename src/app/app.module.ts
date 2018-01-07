@@ -3,7 +3,7 @@ import {BrowserAnimationsModule}from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {HttpModule} from '@angular/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import 'hammerjs';
@@ -18,7 +18,7 @@ import { ContactComponent } from './contact/contact.component';
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { LoginComponent } from './login/login.component'
-import {MatProgressSpinnerModule,MdToolbarModule, MdButtonModule, MdCheckboxModule,MatListModule,MatGridListModule,MatCardModule,MatFormFieldModule,MatInputModule,MatSelectModule,MatSlideToggleModule} from '@angular/material';
+import {MatSliderModule,MatProgressSpinnerModule,MdToolbarModule, MdButtonModule, MdCheckboxModule,MatListModule,MatGridListModule,MatCardModule,MatFormFieldModule,MatInputModule,MatSelectModule,MatSlideToggleModule} from '@angular/material';
 //Service COmponents
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
@@ -27,9 +27,10 @@ import {LeaderService} from './services/leader.service'
 //App routing module
 import {AppRoutingModule} from './app-routing/app-routing.module';
 
+//base url
+import { baseURL } from './shared/baseurl';
 
-
-
+import {ProcessHttpmsgService} from './services/process-httpmsg.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,9 +47,11 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpModule,
     MatDialogModule,
     MdToolbarModule,
     MdButtonModule,
+    MatSliderModule,
     MdCheckboxModule,
     MatListModule,
     MatProgressSpinnerModule,
@@ -65,7 +68,7 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
   ],
 
   entryComponents:[LoginComponent],//to open login component from header
-  providers: [DishService,PromotionService,LeaderService],
+  providers: [DishService,PromotionService,LeaderService,{provide: 'BaseURL', useValue: baseURL},ProcessHttpmsgService],
   
   
   bootstrap: [AppComponent]

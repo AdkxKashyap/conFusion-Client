@@ -2,30 +2,41 @@ import { Injectable } from '@angular/core';
 import {Dish} from '../shared/dish'
 import {DISHES} from '../shared/Globaldishes'
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/delay';
+
+import { Http, Response } from '@angular/http';
+import { baseURL } from '../shared/baseurl';
+import { ProcessHttpmsgService } from './process-httpmsg.service';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 @Injectable()
-export class DishService {
+export class DishService {                               //->map is used to store all values in an array 
 
 
-  constructor() { }
+  constructor(private http:Http,
+              private processHTTPMsgService: ProcessHttpmsgService  ) { }
 
-  getDishes():Promise<Dish[]>{
-  return new Promise((resolve)=>{    //see mozilla docs for more promise info
-setTimeout(()=>resolve(DISHES),2000);
-  }) ;
-}
- getDish(id: number): Observable<Dish> {
-    return Observable.of(DISHES.filter((dish) => (dish.id == id))[0]).delay(2000);
+getDishes(): Observable<Dish[]> {  
+    return this.http.get(baseURL + 'dishes')
+                    .map(res => { return this.processHTTPMsgService.extractData(res); })//For more about map function =>https://hackernoon.com/understanding-map-filter-and-reduce-in-javascript-5df1c7eee464
+                    .catch(error => { return this.processHTTPMsgService.handleError(error); });
   }
 
-getFeaturedDish():Promise <Dish>{
-  return new Promise(resolve=>{
-    setTimeout(()=>resolve(DISHES.filter((dish)=>(dish.featured))[0]),2000);
-  });
-}
- getDishIds(): Observable<number[]> {
-    return Observable.of(DISHES.map(dish => dish.id ));
-  }                                                             //->Returns an array of type observable all dish ids .
-                                                                //->map is used to store all values in an array 
+  getDish(id: number): Observable<Dish> {
+    return  this.http.get(baseURL + 'dishes/'+ id)
+                    .map(res => { return this.processHTTPMsgService.extractData(res); })
+                    .catch(error => { return this.processHTTPMsgService.handleError(error); });
+  }
+
+  getFeaturedDish(): Observable<Dish> {
+    return this.http.get(baseURL + 'dishes?featured=true')
+                    .map(res => { return this.processHTTPMsgService.extractData(res)[0]; })
+                    .catch(error => { return this.processHTTPMsgService.handleError(error); });
+  }
+
+   getDishIds(): Observable<number[]> {
+    return this.getDishes()
+      .map(dishes => { return dishes.map(dish => dish.id) });}
+      
+                                                                
 }
 

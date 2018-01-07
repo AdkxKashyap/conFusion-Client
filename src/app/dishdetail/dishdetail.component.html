@@ -6,14 +6,14 @@
     fxLayoutGap="10px" 
     fxLayoutGap.xs="0">
 
-    <div  fxFlex="40"  >
-    <md-card *ngIf="dish">
+    <div  fxFlex="40"*ngIf="dish"  >
+    <md-card >
       <md-card-header>
         <md-card-title>
           <h4>{{dish.name | uppercase}}</h4>
         </md-card-title>
         </md-card-header>
-      <img md-card-image src={{dish.image}} alt={{dish.name}}>
+      <img md-card-image src="{{BaseURL + dish.image}}" alt={{dish.name}}>
       <md-card-content>
         <p>{{dish.description}}
         </p>
@@ -33,8 +33,12 @@
     <md-spinner ></md-spinner><h4>Loading . . . Please Wait</h4>
   </div>
 
-  <div fxFlex="40"  >
-     <md-list *ngIf="dish"  >
+  <div fxFlex="40" *ngIf="dish"  >
+    <div fxLayout="column"
+        fxLayout.sm="row"
+        fxLayout.xs="column">
+        <div fxFlex>
+     <md-list  >
           <h3>Comments</h3>
          <md-list-item  *ngFor="let comment of dish.comments"> 
           <p md-line >
@@ -50,13 +54,76 @@
           </p>
         </md-list-item>
     </md-list>
+        </div>
+  <!-- Showing the preview-->
+      <div fxFlex *ngIf="fgroup.valid">
+        <md-list>
+          <md-list-item>
+            <p md-line>
+              {{valueComment}}
+            </p>
+            <p md-line>
+              {{valueRating}} Stars!
+            </p>
+            <p md-line>
+              --{{valueAuthor}}  {{d}}
+            </p>
+          </md-list-item>
+        </md-list>
+      </div>
+      <!--Creating The form-->
+      <div fxFlex>
+      <form novalidate [formGroup]="fgroup" (ngSubmit)="onSubmit()">
+        <div fxLayout="column"
+        fxLayout.sm="row"
+        fxLayout.xs="column">
+        <div fxFlex>
+        <md-input-container class="half-width"
+        dividerColor="{{(formErrors.author)?'warn':'primary'}}">
+               <input mdInput formControlName="author" placeholder="Name" type="text" required>
+               <md-hint>
+               <span [hidden]="!(formErrors.author)">{{formErrors.author}}</span>
+               </md-hint>
+        </md-input-container>
+        </div>
       
-  </div> 
-  <div fxFlex="40"  [hidden]="dish">
-    <md-spinner ></md-spinner><h4>Loading . . . Please Wait</h4>
+        <div fxFlex>
+         <span class="fa fa-star fa-lg" aria-hidden="true"> Rate The Food Item</span>
+        <md-slider color="primary" 
+        max="5"showTicks="true"
+        thumbLabel ="true" autoTicks="false"
+        tickInterval ="1"  
+        formControlName="rating">
+        </md-slider>
+        </div>
+      <div fxFlex>
+        <md-input-container class="full-width"
+        dividerColor="{{(formErrors.comment)?'warn':'primary'}}">
+              <textarea mdInput formControlName="comment" placeholder="Your Comments" rows=12 required></textarea>
+               <md-hint>
+               <span [hidden]="!(formErrors.comment)">{{formErrors.comment}}</span>
+               </md-hint>
+            </md-input-container>
+      </div>
+          <div fxFlex>
+           <button md-button   class="background-primary text-floral-white"[disabled]="fgroup.invalid">Submit</button>
+          </div>
+       </div>    
+      </form>
+      </div>  
+   </div> 
+  
   </div>
-
-</div>        
+  <div fxFlex="50"  [hidden]="dish">
+    <md-spinner ></md-spinner><h4>Loading . . . Please Wait</h4>
+  </div>          
+</div>    
+        
+      
+       
+        
+      
+  
         
           
        

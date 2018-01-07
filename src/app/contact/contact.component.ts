@@ -54,7 +54,7 @@ export class ContactComponent implements OnInit {
   createForm() {
     this.feedbackForm = this.fb.group({     //Form model
       firstname: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(25)]],
-      lastname:  ['',Validators.required,Validators.minLength(2),Validators.maxLength(25)],
+      lastname:  ['',[Validators.required,Validators.minLength(2),Validators.maxLength(25)]],
       telnum:['',[Validators.required,Validators.pattern]],
       email:  ['',[Validators.email,Validators.required]],
       agree: false,
