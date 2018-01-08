@@ -17,6 +17,7 @@ export class DishdetailComponent implements OnInit {
   
   
   dish: Dish;
+  dishcopy=null //REST save
   dishIds: number[];
   prev: number;
   next: number;
@@ -76,7 +77,7 @@ for(const key in control.errors)
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      .subscribe(dish => { this.dish = dish; this.dishcopy=dish; this.setPrevNext(dish.id); });
       this.createForm();
       //Monitors values changed in each form field for preview display
      this.fgroup.get('author').valueChanges.subscribe((valueAuthor:string)=>this.valueAuthor=valueAuthor);
@@ -114,7 +115,8 @@ onSubmit()
   {
 this.valueComments=this.fgroup.value;
 this.valueComments.date=this.d;
-this.dish.comments.push(this.valueComments);
+this.dishcopy.comments.push(this.valueComments);
+this.dishcopy.save().subscribe(dish => { this.dish = dish; console.log(this.dish); })//when contents are saved the server returns an object observable of the saved dish.
 this.fgroup.reset({ 
      author: '',
       rating: '5',

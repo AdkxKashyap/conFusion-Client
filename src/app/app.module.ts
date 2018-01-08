@@ -31,6 +31,10 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import { baseURL } from './shared/baseurl';
 
 import {ProcessHttpmsgService} from './services/process-httpmsg.service'
+//Restangular services
+import { RestangularModule, Restangular } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restConfig';
+import { HighlightDirective } from './directives/highlight.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,10 +45,12 @@ import {ProcessHttpmsgService} from './services/process-httpmsg.service'
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
     
   ],
   imports: [
+    RestangularModule.forRoot(RestangularConfigFactory),
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
@@ -64,6 +70,7 @@ import {ProcessHttpmsgService} from './services/process-httpmsg.service'
     MatInputModule,
     MatSelectModule,
     MatSlideToggleModule,
+   
     AppRoutingModule
   ],
 

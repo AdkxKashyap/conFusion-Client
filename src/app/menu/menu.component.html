@@ -10,7 +10,7 @@
 <!-- Grid List-->
   <div fxFlex *ngIf="dishes">
     <md-grid-list cols="2" rowHeight="200px">
-      <md-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]"> <!-- Sends dish id to router--><!-- (click)="onSelect(dish)" >Array of dishes of type dish   onselect event handler-->
+      <md-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]"appHighlight> <!-- Sends dish id to router--><!-- (click)="onSelect(dish)" >Array of dishes of type dish   onselect event handler-->
         <img height="200px" src="{{BaseURL + dish.image}}" alt={{dish.name}}>
         <md-grid-tile-footer>
           <h1 md-line>{{dish.name | uppercase}}</h1>
