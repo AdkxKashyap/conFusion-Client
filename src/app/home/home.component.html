@@ -11,7 +11,7 @@
      <h2>Error</h2>
     <h4>{{errMess}}</h4>
   </div>
-<md-card *ngIf="dish" fxFlex>
+<md-card *ngIf="dish" fxFlex [@expand]>
   <md-card-header>
     <div md-card-avatar></div>
     <md-card-title>
@@ -28,7 +28,7 @@
 <md-spinner
   [color]="color1"></md-spinner>
 </div>
-<md-card *ngIf="promotion" fxFlex>
+<md-card *ngIf="promotion" fxFlex [@expand]>
   <md-card-header>
     <div md-card-avatar></div>
     <md-card-title>
@@ -45,7 +45,7 @@
   <md-spinner
   [color]="color"></md-spinner>
 </div>
-<md-card *ngIf="leader" fxFlex>
+<md-card *ngIf="leader" fxFlex [@expand]>
   <md-card-header>
     <div md-card-avatar></div>
     <md-card-title>
