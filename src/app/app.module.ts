@@ -23,14 +23,15 @@ import {MatSliderModule,MatProgressSpinnerModule,MdToolbarModule, MdButtonModule
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import {LeaderService} from './services/leader.service'
-
+import {ProcessHttpmsgService} from './services/process-httpmsg.service'
+import {FormsubmitService} from './services/formsubmit.service'
 //App routing module
 import {AppRoutingModule} from './app-routing/app-routing.module';
 
 //base url
 import { baseURL } from './shared/baseurl';
 
-import {ProcessHttpmsgService} from './services/process-httpmsg.service'
+
 //Restangular services
 import { RestangularModule, Restangular } from 'ngx-restangular';
 import { RestangularConfigFactory } from './shared/restConfig';
@@ -75,7 +76,7 @@ import { HighlightDirective } from './directives/highlight.directive';
   ],
 
   entryComponents:[LoginComponent],//to open login component from header
-  providers: [DishService,PromotionService,LeaderService,{provide: 'BaseURL', useValue: baseURL},ProcessHttpmsgService],
+  providers: [DishService,PromotionService,LeaderService,{provide: 'BaseURL', useValue: baseURL},ProcessHttpmsgService,FormsubmitService],
   
   
   bootstrap: [AppComponent]

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import{FormsubmitService}from '../services/formsubmit.service'
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut,expand } from '../animations/app.animation';
-
+import { visibility } from '../animations/app.animation';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -13,14 +13,20 @@ import { flyInOut,expand } from '../animations/app.animation';
   'style': 'display: block;'
   },
   animations: [
+    visibility(),
     flyInOut(),
     expand()
   ]
 })
 export class ContactComponent implements OnInit {
-
+  visibility="shown"
+notHidden:boolean;
+notsubmitted:boolean;
+errMess:string
   feedbackForm: FormGroup;
   feedback: Feedback;
+  
+  feedbackcopy:Feedback;
   contactType = ContactType;
  color='primary'; //Colour for slide toggle
  formErrors={
@@ -51,7 +57,9 @@ export class ContactComponent implements OnInit {
   };
     
   
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private fbsubmit:FormsubmitService) {
+    this.notHidden=true;
+    this.notsubmitted=true;
     //this.createForm(); =>both are correct.
   }
 
@@ -91,8 +99,15 @@ for(const key in control.errors)
   }
 }
 
+
   onSubmit() {
+    this.visibility='hidden'
+  
+    this.notHidden=!this.notHidden;
     this.feedback = this.feedbackForm.value;
+    this.fbsubmit.onFeedbackSubmit(this.feedback).subscribe(feedbackcopy=>{  this.notsubmitted=true;this.feedbackcopy=feedbackcopy},errMess=>this.errMess=errMess)
+    setTimeout(()=>{this.notsubmitted=false;this.notHidden=!this.notHidden;this.feedbackcopy=null;},5000);
+
     console.log(this.feedback);
     this.feedbackForm.reset({ 
      firstname: '',

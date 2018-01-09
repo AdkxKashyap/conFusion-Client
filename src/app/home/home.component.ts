@@ -30,8 +30,8 @@ color1="accent"
 
   ngOnInit() {
     this.dishservice.getFeaturedDish().subscribe(dish=>this.dish=dish, errmess => this.errMess = <any>errmess);
-    this.promo.getFeaturedPromotion().subscribe(promotion=>this.promotion=promotion);//Use observable
-    this.leaderservice.getFeaturedLeader().then(leader=>this.leader=leader);
+    this.promo.getFeaturedPromotion().subscribe(promotion=>this.promotion=promotion,errMess=>this.errMess=<any>errMess);//Use observable
+    this.leaderservice.getFeaturedLeader().subscribe(leader=>this.leader=leader,errMess=>this.errMess=<any>errMess)
     
   }
 

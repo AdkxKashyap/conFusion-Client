@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Dish} from '../shared/dish'
-import {DISHES} from '../shared/Globaldishes'
+
 import { Observable } from 'rxjs/Observable';
 
 import { Http, Response } from '@angular/http';
@@ -15,10 +15,10 @@ export class DishService {                               //->map is used to stor
 
 
   constructor(private restangular: Restangular,
-              private processHTTPMsgService: ProcessHttpmsgService  ) { }
+              private processHTTPMsgService: ProcessHttpmsgService  ) { }//more about maps=>https://hackernoon.com/understanding-map-filter-and-reduce-in-javascript-5df1c7eee464
 
 getDishes(): Observable<Dish[]> {
-    return this.restangular.all('dishes').getList();
+    return this.restangular.all('dishes').getList(); //fetches dishes from json server localhost/3000/dishes
   }
 
   getDish(id: number): Observable<Dish> {

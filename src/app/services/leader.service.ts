@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
 import {Leader} from '../shared/leader';
-import {LEADERS} from '../shared/Globalleaders';
 import {Observable} from 'rxjs/Observable';
- import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { RestangularModule, Restangular } from 'ngx-restangular';
 @Injectable()
 export class LeaderService {
 
-  constructor() { }
+  constructor(private restangular:Restangular) { }
 //Convert Observable to promise
- getLeaders(): Promise<Leader[]> {
-    return Observable.of(LEADERS).delay(2000).toPromise();
+ getLeaders(): Observable<Leader[]> {
+    return this.restangular.all('leaders').getList();
   }
 
-  getLeader(id: number): Promise<Leader> {
-    return Observable.of(LEADERS.filter((leader) => (leader.id === id))[0]).delay(2000).toPromise();
+  getLeader(id: number): Observable<Leader> {
+    return this.restangular.one('leaders',id).get();
   }
 
-  getFeaturedLeader(): Promise<Leader> {
-    return Observable.of(LEADERS.filter((leader) => leader.featured)[0]).delay(2000).toPromise();
+  getFeaturedLeader(): Observable<Leader> {
+    return this.restangular.all('leaders').getList({featured:true})
+    .map(leader=>leader[0]);
   }
 }
+
+
