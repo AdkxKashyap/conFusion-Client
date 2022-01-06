@@ -127,7 +127,7 @@ onSubmit()
 this.valueComments=this.fgroup.value;
 this.valueComments.date=this.d;
 this.dishcopy.comments.push(this.valueComments);
-this.dishcopy.save().subscribe(dish => { this.dish = dish; console.log(this.dish); })//when contents are saved the server returns an object observable of the saved dish.
+this.dishcopy.save().subscribe(dish => { this.dish = dish; })//when contents are saved the server returns an object observable of the saved dish.
 this.fgroup.reset({ 
      author: '',
       rating: '5',

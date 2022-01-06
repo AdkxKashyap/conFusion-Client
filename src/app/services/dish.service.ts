@@ -8,7 +8,8 @@ import { baseURL } from '../shared/baseurl';
 import { ProcessHttpmsgService } from './process-httpmsg.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { RestangularModule, Restangular } from 'ngx-restangular';
+import { Restangular } from 'ngx-restangular';
+
 
 @Injectable()
 export class DishService {                               //->map is used to store all values in an array 

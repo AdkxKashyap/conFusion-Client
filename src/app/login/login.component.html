@@ -3,13 +3,13 @@
   <span class="flex-spacer"></span>
   <button md-button md-dialog-close>&times;</button>
 </md-toolbar>
-
-<p>{{ user | json }}</p>
-
+<div><span style='color:cornflowerblue;font-size:10px'>*For new users we will create an account</span></div>
 <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
 
   <md-dialog-content>
+   
     <p>
+      
       <md-input-container dividerColor="{{username.invalid && !username.pristine ? 'warn' : 'primary'}}">
         <input mdInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" #username="ngModel" required> <!--ngModel is used to bind the data to user object  -->
         <md-hint>

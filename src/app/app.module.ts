@@ -19,6 +19,7 @@ import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { LoginComponent } from './login/login.component'
 import {MatSliderModule,MatProgressSpinnerModule,MdToolbarModule, MdButtonModule, MdCheckboxModule,MatListModule,MatGridListModule,MatCardModule,MatFormFieldModule,MatInputModule,MatSelectModule,MatSlideToggleModule} from '@angular/material';
+
 //Service COmponents
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';

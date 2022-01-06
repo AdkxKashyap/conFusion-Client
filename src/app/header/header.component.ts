@@ -11,10 +11,24 @@ export class HeaderComponent implements OnInit {
   constructor(public dialog: MdDialog ) { }
 
   ngOnInit() {
+    this.isloggedin = false;
+    this.username = localStorage.getItem("username");
+    if(this.username != null) {
+      this.isloggedin = true;
+    }
   }
-
+  username : any;
+  isloggedin : boolean;
   openLoginForm() {
-    this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
+    if(this.username != null) {
+      //logout
+      this.isloggedin = false;
+      localStorage.removeItem("username");
+      window.location.reload();
+    } else {
+      this.dialog.open(LoginComponent, {width: '500px', height: '450px'});
+    }
+    
   }
 
 }
