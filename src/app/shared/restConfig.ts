@@ -1,6 +1,6 @@
-import { baseURL } from './baseUrl';
+import { environment } from '../../environments/environment';
 
 // Function for settting the default restangular configuration
 export function RestangularConfigFactory (RestangularProvider) {
-  RestangularProvider.setBaseUrl(baseURL);
+  RestangularProvider.setBaseUrl(environment.PORT);
 }

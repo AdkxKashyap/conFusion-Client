@@ -30,7 +30,7 @@ import {FormsubmitService} from './services/formsubmit.service'
 import {AppRoutingModule} from './app-routing/app-routing.module';
 
 //base url
-import { baseURL } from './shared/baseurl';
+import { environment } from '../environments/environment';
 
 
 //Restangular services
@@ -77,7 +77,7 @@ import { HighlightDirective } from './directives/highlight.directive';
   ],
 
   entryComponents:[LoginComponent],//to open login component from header
-  providers: [DishService,PromotionService,LeaderService,{provide: 'BaseURL', useValue: baseURL},ProcessHttpmsgService,FormsubmitService],
+  providers: [DishService,PromotionService,LeaderService,{provide: 'BaseURL', useValue: environment.PORT},ProcessHttpmsgService,FormsubmitService],
   
   
   bootstrap: [AppComponent]
