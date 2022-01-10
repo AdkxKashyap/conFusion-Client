@@ -8,7 +8,7 @@ import {LoginComponent} from '../login/login.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MdDialog, @Inject('BaseURL') private BaseURL ) { }
+  constructor(public dialog: MdDialog, @Inject('BaseURL') public BaseURL ) { }
 
   ngOnInit() {
     this.isloggedin = false;

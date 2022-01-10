@@ -26,7 +26,7 @@ leader:Leader;
 errMess:string;
 color="warn"
 color1="accent"
-  constructor(private dishservice:DishService,private promo:PromotionService,private leaderservice:LeaderService,@Inject('BaseURL') public BaseURL) {}
+  constructor(private dishservice:DishService,private promo:PromotionService,private leaderservice:LeaderService,@Inject('BaseURL') private BaseURL) {}
 
   ngOnInit() {
     this.dishservice.getFeaturedDish().subscribe(dish=>this.dish=dish, errmess => this.errMess = <any>errmess);
