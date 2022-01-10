@@ -1,13 +1,16 @@
 $lt-gray: #ddd;
 $background-dark: #512DA8;
-$background-light: #9575CD;
+$background-light: #00BCD4;
 $background-pale: #D1C4E9;
-$background-moredark: #4527A0;
+$background-moredark: #7C4DFF;
+$toolbar-color:#0097A7;
 @mixin zero-margin($pad-up-down, $pad-left-right) {
     margin: 0px auto;
     padding: $pad-up-down $pad-left-right;
 }
-
+.toolbar {
+    background: $toolbar-color;
+}
 .jumbotron {
     @include zero-margin(70px,30px);
     background: $background-light ;

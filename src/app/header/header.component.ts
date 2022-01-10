@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MdDialog,MdDialogRef} from '@angular/material';
 import {LoginComponent} from '../login/login.component';
 @Component({
@@ -8,10 +8,11 @@ import {LoginComponent} from '../login/login.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MdDialog ) { }
+  constructor(public dialog: MdDialog, @Inject('BaseURL') private BaseURL ) { }
 
   ngOnInit() {
     this.isloggedin = false;
+    this.logo = "images/logo.png";
     this.username = localStorage.getItem("username");
     if(this.username != null) {
       this.isloggedin = true;
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
   }
   username : any;
   isloggedin : boolean;
+  logo : any;
   openLoginForm() {
     if(this.username != null) {
       //logout
